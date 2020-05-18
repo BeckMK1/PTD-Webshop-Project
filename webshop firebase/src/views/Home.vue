@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <slider />
+    <slider></slider>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import slider from '@/components/slider.vue'
+import slider from '../components/slider.vue'
 
 export default {
   name: 'Home',
   components: {
-    slider
+    slider,
   }
 }
 </script>
