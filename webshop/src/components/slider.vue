@@ -16,9 +16,9 @@ export default {
   data() {
     return {
       images: [
-        "assets/slider/slider1.jpg",
-        "assets/slider/slider2.jpg",
-        "assets/slider/slider3.jpg"
+        "https://drive.google.com/file/d/1tT2rWVSj1EOwBdptOiHg5s5gleWxzGnL/view?usp=sharing",
+        "https://drive.google.com/file/d/1A8gPn-pFufgonrBkXzZJ86Es5b6q9UNj/view?usp=sharing",
+        "https://drive.google.com/file/d/1uT7c7cgNf6WLX_wJj4xAu2U_0E-vRifc/view?usp=sharing"
       ],
       // timer: null,
       currentIndex: 0
