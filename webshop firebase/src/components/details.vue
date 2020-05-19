@@ -1,67 +1,36 @@
 <template>
     <div class="details">
-        <div class="container" v-for="(post,Pid) in posts" :key="Pid">
-            <div class="flex-container" v-if="proId == post.id">
-            <h1 class="title">{{post.title}}</h1>
-            <p class="dis">{{post.description}}</p>
-            <img class="img" :src="post.image" alt/>
+        <div class="container" v-for="(clothing,Pid) in clothings" :key="Pid">
+            <div class="flex-container" v-if="proId == clothing.id">
+            <h1 class="title">{{clothing.title}}</h1>
+            <p class="dis">{{clothing.description}}</p>
+            <img class="img" :src="clothing.image" alt/>
             <button class="hide-btn" v-on:click="hide = !hide">edit</button>
             <div class="edit" v-if="hide"> 
-              <input type="text" v-model="post.title" placeholder="type the title here" required>
-              <input type="text" v-model="post.description" placeholder="type the description here">
+              <input type="text" v-model="clothing.title" placeholder="type the title here" required>
+              <input type="text" v-model="clothing.description" placeholder="type the description here">
             <div>
             </div>
-              <button type="button" v-on:click="edit(post)">edit</button>
             </div>
             </div>
             </div>
             </div>
 </template>
 <script>
-import { postRef } from "../firebase-db"
+import { ClothingRef } from "../firebase-db"
 export default {
   name:'detalis',
   data(){
       return{
-        posts:[],
+        clothings:[],
         proId:this.$route.params.Pid,    
         title:"details",
-        newPost: '',
-        newPostTitle:'',
-        newPostDis: '',
-        newPostImg:'',
-        nowEdit:'',
-        hide: false
       }
   },
     firestore:{
-      posts: postRef
+      clothing: ClothingRef
   },
-  methods:{
-      triggerChooseImg(){
-    this.$refs.fileInput.click()
-  },
-  previewImage () {
-    const imageFile = this.$refs.fileInput.files[0]
-    const fileReader = new FileReader()
-    fileReader.onload = (event) => {
-      this.post.image = event.target.result
-    }
-    fileReader.readAsDataURL(imageFile)
-  },
-    edit (post) {
-      this.nowEdit=post.id
-      this.newPostTitle = post.title
-      this.newPostDis = post.description
-      this.newPostImg = post.image
-      postRef.doc(this.nowEdit).update({
-        title: this.newPostTitle,
-        description:this.newPostDis,
-        image: this.newPostImg
-      })
-   }
-  }
-}  
+} 
 </script>
 <style>
 /* edit */

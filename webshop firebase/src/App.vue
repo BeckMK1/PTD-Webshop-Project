@@ -23,17 +23,29 @@
       </div>
     </div>
     <div id="nav">
-      <div class="all">
+      <div class="all" v-on:click="isHidden = !isHidden">
         <img class="lines" src="./assets/3-lines-sq.svg" alt="lines">
         <p>All products</p>
       </div>
-
       <router-link to="/clothing">Clothing</router-link>
+     <div class="pop-out" v-if="!isHidden">
+      <router-link to="/clothing"><p>Clothing</p></router-link>  
+      <p>weapons</p>
+    </div>
     </div>
     <router-view />
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return{
+      isHidden: true
+    }
+  },
+}
+</script>
 <style>
   * {
     margin: 0;
@@ -105,6 +117,8 @@
     align-items: center;
     margin-right: 20px;
     margin-left: 110px;
+    cursor: pointer;
+    user-select: none;
   }
 
   .lines {
@@ -193,5 +207,17 @@
     width: 60px;
     height: 60px;
     border-radius: 180px;
+  }
+
+  .pop-out{
+    background-color: gray;
+    position: absolute;
+    top: 50px;
+    width: 18%;
+    border:solid black thin;
+  }
+  .pop-out p{
+  padding-top: 10px;
+  border-bottom:solid black thin;
   }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="slider">
-      <div>
+      <div class="slider-container" v-for="number in [currentNumber]" :key="number"
+         transition="fade">
       <img :src="images[Math.abs(currentNumber) % images.length]" />
       </div>
   <a class="prev" @click="prev"> Previous</a>
@@ -13,21 +14,21 @@
 export default {
   data() {
     return {
-      images: ["https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider1.jpg?alt=media&token=5ddce370-8213-46d0-889d-7dc6225a191a",
-                "https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider2.jpg?alt=media&token=50c00bb5-ebc7-4cbc-a646-941eebb2ed0e",
-                "https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider3.jpg?alt=media&token=dc97c4a0-1b40-4485-b9ce-98f8add9509b"
+      images: ["https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider1-16by9.png?alt=media&token=77a6f6e4-b9b7-42c6-84a1-9df7adb7911e",
+                "https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider2-16by9.png?alt=media&token=0e3438f4-73bd-4749-9909-56974ba3f22b",
+                "https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider3-16by9.png?alt=media&token=1d011cc9-58b0-4993-8855-fb3a85cf41b0"
       ],
-      // timer: null,
+      timer: null,
       currentNumber: 0
     };
 
   },
-  ready: function (){
+  mounted: function (){
     this.startRotation();
   },
   methods: {
     startRotation: function() {
-      this.timar = setInterval(this.next, 3000);
+      this.timer = setInterval(this.next, 3000);
     },
     next: function(){
       this.currentNumber += 1;
@@ -39,15 +40,22 @@ export default {
 }
 </script>
 <style scoped>
-fade-transition {
-  transition: all 0.8s ease;
-  overflow: hidden;
-  visibility: visible;
+.fade-enter-ative, .fade-leave-ative {
   opacity: 1;
   position: absolute;
 }
 .fade-enter, .fade-leave {
   opacity: 0;
   visibility: hidden;
+}
+.slider-container img{
+width: 50%;
+height: 50%;
+max-width: 900px;
+margin-top: 50px;
+}
+a{
+  cursor: pointer;
+  user-select: none;
 }
 </style>

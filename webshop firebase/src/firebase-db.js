@@ -14,4 +14,4 @@ export const db = firebase
   })
   .firestore()
 
-export const postRef = db.collection('slider')
+export const ClothingRef = db.collection('clothing')
