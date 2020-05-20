@@ -1,7 +1,6 @@
 <template>
   <div class="slider">
-      <div class="slider-container" v-for="number in [currentNumber]" :key="number"
-         transition="fade">
+      <div class="slider-container">
       <img :src="images[Math.abs(currentNumber) % images.length]" />
       </div>
   <a class="prev" @click="prev"> Previous</a>
@@ -40,14 +39,6 @@ export default {
 }
 </script>
 <style scoped>
-.fade-enter-ative, .fade-leave-ative {
-  opacity: 1;
-  position: absolute;
-}
-.fade-enter, .fade-leave {
-  opacity: 0;
-  visibility: hidden;
-}
 .slider-container img{
 width: 50%;
 height: 50%;

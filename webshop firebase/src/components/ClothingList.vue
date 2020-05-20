@@ -30,8 +30,8 @@ export default {
   },
 
   methods:{
-  goTodetail(clothingId){
-    this.$router.push({name:'details',params:{Pid:clothingId}})
+  goTodetail(proId){
+    this.$router.push({name:'details',params:{Pid:proId}})
   }
   },
 }

@@ -18,6 +18,11 @@ Vue.use(VueRouter)
   path: '/details/:Pid',
   name: 'details',
   component: () => import(/* webpackChunkName: "about" */ '../components/details')
+  },
+  {
+    path: '/basket',
+    name:'basket',
+    component: () => import(/* webpackChunkName: "about" */ '../views/basket')
   }
 ]
 

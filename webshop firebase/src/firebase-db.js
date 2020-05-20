@@ -15,3 +15,4 @@ export const db = firebase
   .firestore()
 
 export const ClothingRef = db.collection('clothing')
+export const basketRef = db.collection('basket')

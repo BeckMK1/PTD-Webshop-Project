@@ -5,13 +5,6 @@
             <h1 class="title">{{clothing.title}}</h1>
             <p class="dis">{{clothing.description}}</p>
             <img class="img" :src="clothing.image" alt/>
-            <button class="hide-btn" v-on:click="hide = !hide">edit</button>
-            <div class="edit" v-if="hide"> 
-              <input type="text" v-model="clothing.title" placeholder="type the title here" required>
-              <input type="text" v-model="clothing.description" placeholder="type the description here">
-            <div>
-            </div>
-            </div>
             </div>
             </div>
             </div>

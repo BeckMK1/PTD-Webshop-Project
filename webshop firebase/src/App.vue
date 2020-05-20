@@ -5,11 +5,11 @@
       <div class="circle"></div>
       <input type="text" id="search" placeholder="search...">
       <div id="round-icons">
-        <div class="shop-circle">
+        <router-link to="/basket"><div class="shop-circle">
           <div class="shop-img">
             <img src="./assets/shopping-cart.png" alt="">
           </div>
-        </div>
+        </div></router-link>
         <div class="help-circle">
           <div class="help-img">
             <img src="./assets/help.png" alt="">
