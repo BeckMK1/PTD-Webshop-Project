@@ -30,8 +30,8 @@ export default {
   },
 
   methods:{
-  goTodetail(proId){
-    this.$router.push({name:'details',params:{Pid:proId}})
+  goTodetail(clothingId){
+    this.$router.push({name:'details',params:{Pid:clothingId}})
   }
   },
 }
@@ -42,6 +42,8 @@ display: flex;
 flex-direction: row;
 margin-top: 50px;
 margin-left: 100px;
+user-select: none;
+cursor: pointer;
 }
 .cEach{
 display: flex;

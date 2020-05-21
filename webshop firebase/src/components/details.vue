@@ -2,15 +2,19 @@
     <div class="details">
         <div class="container" v-for="(clothing,Pid) in clothings" :key="Pid">
             <div class="flex-container" v-if="proId == clothing.id">
-            <h1 class="title">{{clothing.title}}</h1>
+            <h1 class="title">{{clothing.name}}</h1>
             <p class="dis">{{clothing.description}}</p>
             <img class="img" :src="clothing.image" alt/>
+
             </div>
+              <button v-on:click="addToBasket(clothing)">add to basket</button>
             </div>
+
             </div>
 </template>
 <script>
 import { ClothingRef } from "../firebase-db"
+import { basketRef } from "../firebase-db"
 export default {
   name:'detalis',
   data(){
@@ -21,8 +25,18 @@ export default {
       }
   },
     firestore:{
-      clothing: ClothingRef
+      clothings: ClothingRef,
+      baskets:basketRef
   },
+  methods:{
+    addToBasket(clothing){
+      basketRef.add({
+        name:clothing.name,
+        description:clothing.description,
+        price:clothing.price
+      })
+    }
+  }
 } 
 </script>
 <style>

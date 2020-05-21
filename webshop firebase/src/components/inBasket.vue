@@ -1,22 +1,37 @@
 <template>
     <div class="inBasket">
         <article v-for="basket in baskets" :key="basket.id">
-            <p>{{basket.title}}</p>
+            <h1>{{ basket.name }}</h1>
+            <button @click="sendEmail(basket)"> send</button>
+
         </article>
     </div>
 </template>
 
 <script>
 import { basketRef } from "../firebase-db"
+import emailjs from 'emailjs-com';
 export default {
     name:'inBasket',
   data(){
       return{
-          baskets:[]
+          baskets:[],
+
       }
   },
   firestore:{
       baskets:basketRef
+  },
+  methods:{
+    sendEmail: (baskets) => {
+        console.log(baskets)
+      emailjs.send('gmail','template_3SLgK9bf', baskets, 'user_6qFtVFe6FgxDVrU0OPOaL',)
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+        console.log('FAILED...', error);
+    });
+    }
   }  
 }
 </script>
