@@ -14,8 +14,19 @@
         <div class="dis">
         <p>{{clothing.description}}</p>
         </div>
+        <div class="stock">
+          <div class="out" v-if="clothing.instock === 0">
+            <div class="out-box"></div>
+            <p>out of stuck</p>
+          </div>
+          <div class="in" v-else="">
+            <div class="in-box"></div>
+             <p>in stock: {{clothing.instock}}</p>
+          </div>
+         
+        </div>
         <div class="price-buy">
-          <p class="price">${{clothing.price}}</p>
+          <p class="price">$ {{clothing.price}}</p>
           <div class="buy-btn">
           <button>buy</button>
           </div>
@@ -44,7 +55,7 @@ export default {
   methods:{
   goTodetail(clothingId){
     this.$router.push({name:'details',params:{Pid:clothingId}})
-  }
+  },
   },
 }
 </script>
@@ -100,5 +111,31 @@ display: flex;
   margin-left: 250px;
   margin-top: 50px;
   font-size: 35px;
+}
+.stock{
+  font-size: 14px;
+  display: flex;
+}
+.out{
+display: flex;
+}
+.in{
+display: flex;
+}
+.out-box{
+position: relative;
+top:2px;
+width: 12px;
+height: 12px;
+background: red;
+margin-right: 5px;
+}
+.in-box{
+position: relative;
+top:2px;
+width: 12px;
+height: 12px;
+background: green;
+margin-right: 5px; 
 }
 </style>
