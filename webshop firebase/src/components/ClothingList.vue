@@ -1,13 +1,25 @@
 <template>
     <div>
       <div class="grid-container">
+          <div class="cTitle">
+            <p>Clothing</p>
+          </div>
         <div class="cContent">
         <article  v-for="clothing in clothings" :key="clothing.id">
           <div class="cEach" @click="goTodetail(clothing.id)">
-        <img :src="clothing.image" alt />
+          <div class="image">
+        <img :src="clothing.image">
+        </div>
         <h3>{{clothing.name}}</h3>
-        <p class="price">${{clothing.price}}</p>
+        <div class="dis">
         <p>{{clothing.description}}</p>
+        </div>
+        <div class="price-buy">
+          <p class="price">${{clothing.price}}</p>
+          <div class="buy-btn">
+          <button>buy</button>
+          </div>
+          </div>
         </div>
         </article>
        </div>
@@ -41,13 +53,52 @@ export default {
 display: flex;
 flex-direction: row;
 margin-top: 50px;
-margin-left: 100px;
+margin-left: 300px;
 user-select: none;
 cursor: pointer;
+text-align: start;
 }
 .cEach{
 display: flex;
 flex-direction: column;
 }
-
+.price{
+  font-weight: bold;
+  font-size: 25px;
+}
+.dis p{
+  font-size:12px;
+}
+.image img{
+  width: 25%;
+}
+h3{
+font-size: 20px;
+}
+.buy-btn button{
+  width: 40%;
+  -webkit-appearance: none;
+  border:none;
+  background: black;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+.buy-btn{
+cursor:pointer;
+text-align:end;
+width: 20%;
+}
+.price-buy{
+display: flex;
+}
+.cTitle{
+  border-bottom: solid;
+  text-align: start;
+  width: 70%;
+  margin-left: 250px;
+  margin-top: 50px;
+  font-size: 35px;
+}
 </style>

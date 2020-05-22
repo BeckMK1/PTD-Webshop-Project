@@ -68,9 +68,9 @@ export default {
 
   #header img {
     position: relative;
-    z-index: 3;
     left: 15px;
     top: 25px;
+    z-index: 2;
   }
 
   #search {
@@ -87,7 +87,7 @@ export default {
     background-color: black;
     padding: 49px;
     border-radius: 180px;
-    z-index: 2;
+    z-index: 1;
     left: 10px;
     top: 5px;
   }
@@ -95,7 +95,6 @@ export default {
   #nav {
     position: relative;
     background-color: gray;
-    z-index: 1;
     display: flex;
     justify-content: start;
     height: 50px;
@@ -111,6 +110,8 @@ export default {
   }
 
   .all {
+    position: relative;
+    z-index: 3;
     border-right: black solid thin;
     height: 100%;
     display: flex;
