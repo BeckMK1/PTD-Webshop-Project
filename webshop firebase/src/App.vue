@@ -3,7 +3,35 @@
     <div id="header">
       <router-link to="/"><img src="./assets/ptd-logo.png" alt="logo"></router-link>
       <div class="circle"></div>
-      <input type="text" id="search" placeholder="search...">
+      <div id="search-container">
+      <input type="text" id="search" v-model="search" placeholder="search...">
+      <div v-for="clothing in filteredclothing" :key="clothing.id">
+        <div v-if="search===''">
+        </div>
+        <div  v-else @click="goTodetail(clothing.id)">
+        <div class="search-box">
+        <p>{{clothing.name}}</p>
+        <div class="image">
+        <img :src="clothing.image">
+        </div>
+        <div class="dis">
+        <p>{{clothing.description}}</p>
+        </div>
+        <div class="stock">
+          <div class="out" v-if="clothing.instock === 0">
+            <div class="out-box"></div>
+            <p>out of stuck</p>
+          </div>
+          <div class="in" v-else="">
+            <div class="in-box"></div>
+             <p>in stock: {{clothing.instock}}</p>
+          </div>
+         
+        </div>
+        </div>
+        </div>
+      </div>
+      </div>
       <div id="round-icons">
         <router-link to="/basket"><div class="shop-circle">
           <div class="shop-img">
@@ -40,12 +68,31 @@
 </template>
 
 <script>
+import { ClothingRef } from "./firebase-db"
 export default {
   data() {
     return{
-      isHidden: true
+      isHidden: true,
+      clothings:[],
+      search:''
     }
   },
+  firestore:{
+      clothings: ClothingRef,
+  },
+  computed:{
+      filteredclothing: function(){
+          return this.clothings.filter((clothing)=>{
+            return clothing.name.toLowerCase().match(this.search)
+          })
+      }
+  },
+  methods:{
+  goTodetail(clothingId){
+    this.$router.push({name:'details',params:{Pid:clothingId}})
+    window.location.reload()
+  },
+}
 }
 </script>
 <style>
@@ -76,14 +123,21 @@ export default {
   }
 
   #search {
+    padding:10px;
+    width: 93.5%;
+  }
+  #search-container{
     position: relative;
     width: 50%;
     height: 100%;
-    padding: 10px;
     top: 35px;
     margin-left: 250px;
   }
-
+  .search-box{
+  position: relative;
+  z-index: 3;
+  background: white;
+  }
   .circle {
     position: absolute;
     background-color: black;

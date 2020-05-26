@@ -14,7 +14,7 @@
         </div>
 
         <div class="d-nav">
-          <div id="pro-info">
+          <div id="pro-info" v-scroll-to="'#pro-content'">
             <p>product info</p>
           </div>
           <div id="specs" v-scroll-to="'#specsContent'">
@@ -39,7 +39,7 @@
           <p class="sTitle">{{clothing.specTitle1}}</p>
           <p class="spec">{{clothing.spec1}}</p>
           </div>
-          <div id="spec2" class="specs">
+          <div id="spec2" class="specs last">
             <p class="sTitle">{{clothing.specTitle2}}</p>
             <p class="spec">{{clothing.spec2}}</p>
           </div>
@@ -79,7 +79,7 @@
           description: clothing.description,
           price: clothing.price
         })
-      }
+      },
     },
   }
 </script>
@@ -138,6 +138,7 @@ right: 50px;
   display: flex;
   justify-content: center;
   margin-top: 100px;
+  padding-top: 100px;
 }
 .pro-text{
   width: 50%;
@@ -146,7 +147,8 @@ right: 50px;
 #specsContent{
 display: flex;
 justify-content: center;
-margin-top: 50px;
+margin-top: 250px;
+margin-bottom: 250px;
 }
 .specs{
   display: flex;
@@ -185,5 +187,8 @@ height: 50px;
 display: flex;
 align-items: center;
 padding-left: 5px; 
+}
+.last{
+border-bottom: solid black thin;
 }
 </style>
