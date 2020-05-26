@@ -29,12 +29,14 @@
       </div>
       <router-link to="/clothing">Clothing</router-link>
      <div class="pop-out" v-if="!isHidden">
-      <router-link to="/clothing"><p>Clothing</p></router-link>  
-      <p>weapons</p>
+      <router-link to="/clothing"><p v-on:click="isHidden =!isHidden">Clothing</p></router-link>  
+      <p v-on:click="isHidden =!isHidden">weapons</p>
     </div>
     </div>
     <router-view />
+      <div class="blackOut" v-if="!isHidden"></div>
   </div>
+
 </template>
 
 <script>
@@ -216,9 +218,19 @@ export default {
     top: 50px;
     width: 18%;
     border:solid black thin;
+    z-index: 2;
   }
   .pop-out p{
   padding-top: 10px;
   border-bottom:solid black thin;
+  }
+  .blackOut{
+    background: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top:135px;
+    opacity: 70%;
   }
 </style>

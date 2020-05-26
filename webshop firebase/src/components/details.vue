@@ -17,17 +17,39 @@
           <div id="pro-info">
             <p>product info</p>
           </div>
-          <div id="specs">
+          <div id="specs" v-scroll-to="'#specsContent'">
             <p>specifications</p>
           </div>
           <div id="review">
             <p>review</p>
           </div>
         </div>
+        <div id="pro-content">
+          <div class="pro-text">
+          <p>{{clothing.productInfo}}</p>
+          </div>
+        </div>
+        <div id="specsContent">
+          <div class="spec-text">
+            <div class="spec-centered">
+              <div class="nav-s-title">
+              <p>specifications</p>
+              </div>
+          <div id="spec1" class="specs">
+          <p class="sTitle">{{clothing.specTitle1}}</p>
+          <p class="spec">{{clothing.spec1}}</p>
+          </div>
+          <div id="spec2" class="specs">
+            <p class="sTitle">{{clothing.specTitle2}}</p>
+            <p class="spec">{{clothing.spec2}}</p>
+          </div>
+          </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
 
-  </div>
 </template>
 <script>
   import {
@@ -43,11 +65,12 @@
         clothings: [],
         proId: this.$route.params.Pid,
         title: "details",
+      
       }
     },
     firestore: {
       clothings: ClothingRef,
-      baskets: basketRef
+      baskets: basketRef,
     },
     methods: {
       addToBasket(clothing) {
@@ -57,7 +80,7 @@
           price: clothing.price
         })
       }
-    }
+    },
   }
 </script>
 <style>
@@ -111,5 +134,56 @@ left:50px
 position: relative;
 right: 50px;
 }
-
+#pro-content{
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.pro-text{
+  width: 50%;
+  text-align: start;
+}
+#specsContent{
+display: flex;
+justify-content: center;
+margin-top: 50px;
+}
+.specs{
+  display: flex;
+  flex-direction: row;
+  border: solid black thin;
+  border-bottom: none;
+  height: 50px;
+}
+.sTitle{
+display: flex;
+width: 10%;
+text-align: start;
+border-right:solid black thin;
+align-items: center;
+margin-left: 5px;
+padding-right: 5px;
+}
+.spec-text{
+width: 35%; 
+display: flex;
+}
+.spec-centered{
+width: 100%;
+}
+.spec{
+display: flex;
+align-items: center;
+margin-left:12px;  
+}
+.nav-s-title{
+text-align: start;
+border: solid black thin;
+border-bottom: none;
+background: gray;
+height: 50px;
+display: flex;
+align-items: center;
+padding-left: 5px; 
+}
 </style>

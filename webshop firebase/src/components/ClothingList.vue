@@ -49,7 +49,7 @@ export default {
    }
   },
   firestore:{
-      clothings: ClothingRef
+      clothings: ClothingRef,
   },
 
   methods:{
