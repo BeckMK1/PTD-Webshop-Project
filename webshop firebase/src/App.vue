@@ -4,20 +4,21 @@
       <router-link to="/"><img src="./assets/ptd-logo.png" alt="logo"></router-link>
       <div class="circle"></div>
       <div id="search-container">
-      <input type="text" id="search" v-model="search" placeholder="search...">
+      <input autocomplete="off" type="text" id="search" v-model="search" placeholder="search..." @focusin="sIsHidden = false" @focusout="sIsHidden = true"  >
       <div v-for="clothing in filteredclothing" :key="clothing.id">
         <div v-if="search===''">
         </div>
-        <div  v-else @click="goTodetail(clothing.id)">
+        <div  v-else @click="goTodetail(clothing.id), search='', sIsHidden= true ">
         <div class="search-box">
-        <p>{{clothing.name}}</p>
-        <div class="image">
         <img :src="clothing.image">
+        <div class="s-text">
+        <div class="sName">
+        <p>{{clothing.name}}</p>
         </div>
-        <div class="dis">
+        <div class="sDis">
         <p>{{clothing.description}}</p>
         </div>
-        <div class="stock">
+        <div class="sStock">
           <div class="out" v-if="clothing.instock === 0">
             <div class="out-box"></div>
             <p>out of stuck</p>
@@ -26,7 +27,11 @@
             <div class="in-box"></div>
              <p>in stock: {{clothing.instock}}</p>
           </div>
-         
+
+        </div>
+          <div>
+            <p class="sPrice">${{clothing.price}}</p>
+          </div>
         </div>
         </div>
         </div>
@@ -62,7 +67,7 @@
     </div>
     </div>
     <router-view />
-      <div class="blackOut" v-if="!isHidden"></div>
+      <div class="blackOut" v-if="!isHidden || !sIsHidden"></div>
   </div>
 
 </template>
@@ -74,7 +79,8 @@ export default {
     return{
       isHidden: true,
       clothings:[],
-      search:''
+      search:'',
+      sIsHidden:true
     }
   },
   firestore:{
@@ -90,8 +96,8 @@ export default {
   methods:{
   goTodetail(clothingId){
     this.$router.push({name:'details',params:{Pid:clothingId}})
-    window.location.reload()
-  },
+    location.reload();
+  }, 
 }
 }
 </script>
@@ -113,6 +119,8 @@ export default {
     justify-content: start;
     background: black;
     margin-top: -15px;
+    width: 100%;
+    height: 100px;
   }
 
   #header img {
@@ -137,6 +145,11 @@ export default {
   position: relative;
   z-index: 3;
   background: white;
+  display: flex;
+  font-size: 12px;
+  height: 80px;
+  padding-bottom:10px;
+  align-items: center;
   }
   .circle {
     position: absolute;
@@ -287,4 +300,49 @@ export default {
     top:135px;
     opacity: 70%;
   }
+  .sName{
+    margin: 0;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .sDis{
+
+  }
+  .search-box img{
+    width: 15%;
+    margin-top: -20px;
+    height: auto;
+  }
+
+  .sStock{
+  justify-content: center;
+  display: flex;
+  
+  }
+  .out{
+display: flex;
+}
+.in{
+display: flex;
+}
+  .s-text{
+  position: relative;
+  width: 100%;
+  margin-top: 5px;
+  }
+.out-box{
+width: 12px;
+height: 12px;
+margin-right: 5px;
+background: red;
+}
+.in-box{
+width: 12px;
+height: 12px;
+margin-right: 5px;
+background: green;
+}
+.sPrice{
+  font-weight: bold;
+}
 </style>
