@@ -26,7 +26,8 @@
         </div>
           </div>
           <div class="add-btn">
-            <button v-on:click="addToBasket(clothing)">add to basket</button>
+            <button v-if="clothing.instock > 0" v-on:click="addToBasket(clothing)">add to basket</button>
+            <button  v-else>out of stock</button>
           </div>
           </div>
         </div>
@@ -98,7 +99,8 @@
         basketRef.add({
           name: clothing.name,
           description: clothing.description,
-          price: clothing.price
+          instock: clothing.instock,
+          price:clothing.price
         })
       },
     },
@@ -270,4 +272,5 @@ flex-direction: column;
 .add-tax-price{
 margin-bottom: 12px;
 }
+
 </style>
