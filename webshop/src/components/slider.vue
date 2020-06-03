@@ -1,96 +1,85 @@
 <template>
   <div class="slider">
-  <transition-group name="fade" tag="div">
-    <div v-for="i in [currentIndex]" :key="i">
-      <img :src="currentImg" />
-    </div>
-  </transition-group>
-  <a class="prev" @click="prev" href="#"> Previous</a>
-  <a class="next" @click="next" href="#"> Next</a>
+      <div class="slider-container">
+      <img :src="images[Math.abs(currentNumber) % images.length]" />
+        <a class="prev" @click="prev" href="#">&#10094; Previous </a>
+        <a class="next" @click="next" href="#">&#10095; Next</a>
+      </div>
+
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'slider',
   data() {
     return {
-      images: [
-        "https://drive.google.com/file/d/1tT2rWVSj1EOwBdptOiHg5s5gleWxzGnL/view?usp=sharing",
-        "https://drive.google.com/file/d/1A8gPn-pFufgonrBkXzZJ86Es5b6q9UNj/view?usp=sharing",
-        "https://drive.google.com/file/d/1uT7c7cgNf6WLX_wJj4xAu2U_0E-vRifc/view?usp=sharing"
+      images: ["https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider1-16by9.png?alt=media&token=77a6f6e4-b9b7-42c6-84a1-9df7adb7911e",
+                "https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider2-16by9.png?alt=media&token=0e3438f4-73bd-4749-9909-56974ba3f22b",
+                "https://firebasestorage.googleapis.com/v0/b/ptd-project-f7bf5.appspot.com/o/slider3-16by9.png?alt=media&token=1d011cc9-58b0-4993-8855-fb3a85cf41b0"
       ],
-      // timer: null,
-      currentIndex: 0
+      timer: null,
+      currentNumber: 0
     };
+
   },
-  mounted: function() {
-    // this.startSlider();
+  mounted: function (){
+    this.startRotation();
   },
   methods: {
-    // startSlider: function() {
-    //   this.timer = setInterval(this.next, 4000);
-    // },
+    startRotation: function() {
+      this.timer = setInterval(this.next, 3000);
+    },
     next: function(){
-      this.currentIndex += 1;
+      this.currentNumber += 1;
     },
     prev: function(){
-      this.currentIndex -= 1;
+      this.currentNumber -= 1;
     }
   },
-  computed: {
-    currentImg: function(){
-      return this.images[Math.abs(this.currentIndex) % this.images.length]
-    }
-  }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-fade-enter-active,
-.fade-leave-active {
-  transition: all 0.9s ease;
-  overflow: hidden;
-  visibility: visible;
-  position: absolute;
-  width:100%;
-  opacity: 1;
+.slider{
+display: flex;
+justify-content: center;
 }
-
-.fade-enter,
-.fade-leave-to {
-  visibility: hidden;
-  width:100%;
-  opacity: 0;
+.slider-container{
+width: 50%;
+height: 50%;
 }
-
-img {
-  height:600px;
-  width:100%
+.slider-container img{
+width: 100%;
+height: 100%;
+max-width: 900px;
+margin-top: 50px;
 }
-
+a{
+  cursor: pointer;
+  user-select: none;
+}
 .prev, .next {
   cursor: pointer;
-  position: absolute;
-  top: 40%;
+  bottom: 280px;
+  position: relative;
   width: auto;
   padding: 16px;
   color: white;
   font-weight: bold;
   font-size: 18px;
   transition: 0.7s ease;
-  border-radius: 0 4px 4px 0;
   text-decoration: none;
   user-select: none;
 }
 
 .next {
-  right: 0;
+  float: right;
+  border-radius: 4px 0px 0px 4px;
 }
 
 .prev {
-  left: 0;
+  float: left;
+  border-radius: 0 4px 4px 0;
 }
 
 .prev:hover, .next:hover {
