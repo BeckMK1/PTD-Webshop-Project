@@ -23,7 +23,12 @@ Vue.use(VueRouter)
     path: '/basket',
     name:'basket',
     component: () => import(/* webpackChunkName: "about" */ '../views/basket')
-  }
+  },
+  {
+  path:'/weapon',
+  name:'Weapon',
+  component: () => import(/* webpackChunkName: "about" */ '../views/weapon')
+},
 ]
 
 const router = new VueRouter({

@@ -5,32 +5,32 @@
       <div class="circle"></div>
       <div id="search-container">
       <input autocomplete="off" type="text" id="search" v-model="search" placeholder="search..." @focusin="sIsHidden = false" @focusout="sIsHidden = true"  >
-      <div v-for="clothing in filteredclothing" :key="clothing.id">
+      <div v-for="product in filteredproduct" :key="product.id">
         <div v-if="search===''">
         </div>
-        <div  v-else @click="goTodetail(clothing.id), search='', sIsHidden= true ">
+        <div  v-else @click="goTodetail(product.id), search='', sIsHidden= true ">
         <div class="search-box">
-        <img :src="clothing.image">
+        <img :src="product.image">
         <div class="s-text">
         <div class="sName">
-        <p>{{clothing.name}}</p>
+        <p>{{product.name}}</p>
         </div>
         <div class="sDis">
-        <p>{{clothing.description}}</p>
+        <p>{{product.description}}</p>
         </div>
         <div class="sStock">
-          <div class="out" v-if="clothing.instock === 0">
+          <div class="out" v-if="product.instock === 0">
             <div class="out-box"></div>
             <p>out of stuck</p>
           </div>
           <div class="in" v-else="">
             <div class="in-box"></div>
-             <p>in stock: {{clothing.instock}}</p>
+             <p>in stock: {{product.instock}}</p>
           </div>
 
         </div>
           <div>
-            <p class="sPrice">${{clothing.price}}</p>
+            <p class="sPrice">${{product.price}}</p>
           </div>
         </div>
         </div>
@@ -63,7 +63,7 @@
       <router-link to="/clothing">Clothing</router-link>
      <div class="pop-out" v-if="!isHidden">
       <router-link to="/clothing"><p v-on:click="isHidden =!isHidden">Clothing</p></router-link>  
-      <p v-on:click="isHidden =!isHidden">weapons</p>
+      <router-link to="/weapon"><p v-on:click="isHidden =!isHidden">weapons</p></router-link>
     </div>
     </div>
     <router-view />
@@ -73,23 +73,23 @@
 </template>
 
 <script>
-import { ClothingRef } from "./firebase-db"
+import { productRef } from "./firebase-db"
 export default {
   data() {
     return{
       isHidden: true,
-      clothings:[],
+      products:[],
       search:'',
       sIsHidden:true
     }
   },
   firestore:{
-      clothings: ClothingRef,
+      products: productRef,
   },
   computed:{
-      filteredclothing: function(){
-          return this.clothings.filter((clothing)=>{
-            return clothing.name.toLowerCase().match(this.search)
+      filteredproduct: function(){
+          return this.products.filter((product)=>{
+            return product.name.toLowerCase().match(this.search)
           })
       }
   },

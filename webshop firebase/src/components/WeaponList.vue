@@ -1,11 +1,12 @@
 <template>
-    <div class="sale">
-      <div class="cTitle">
-            <p>on sale</p>
+    <div>
+      <div class="grid-container">
+          <div class="cTitle">
+            <p>Clothing</p>
           </div>
-                <div class="cContent">
+        <div class="cContent">
         <article  v-for="product in products" :key="product.id">
-            <div class="cEach" v-if="product.onsale" @click="goTodetail(product.id)">
+          <div class="cEach" @click="goTodetail(product.id)" v-if="product.category === 'weapon'">
           <div class="image">
         <img :src="product.image">
         </div>
@@ -24,12 +25,8 @@
           </div>
          
         </div>
-        <div>
-         <p>on sale: {{product.off}}</p>
-        </div>
         <div class="price-buy">
-          <p class="price">$ {{product.price*product.offcal}}</p>
-          <p class="onsale">${{product.price}}</p>
+          <p class="price">$ {{product.price}}</p>
           <div class="buy-btn">
           <button>buy</button>
           </div>
@@ -37,25 +34,29 @@
         </div>
         </article>
        </div>
-            </div>
+        </div>
+    </div>
 </template>
+
 <script>
 import { productRef } from "../firebase-db"
 export default {
-  name:'sale',
+  name:'clothingList',
   data(){
       return{
           products:[],
+          search:''
    }
-},
-firestore:{
+  },
+  firestore:{
       products: productRef,
   },
+
   methods:{
-        goTodetail(productId){
+  goTodetail(productId){
     this.$router.push({name:'details',params:{Pid:productId}})
   },
-  }
+  },
 }
 </script>
 <style>
@@ -109,7 +110,7 @@ display: flex;
   width: 70%;
   margin-left: 250px;
   margin-top: 50px;
-  font-size: 25px;
+  font-size: 35px;
 }
 .stock{
   font-size: 14px;
@@ -138,4 +139,3 @@ background: green;
 margin-right: 5px; 
 }
 </style>
-

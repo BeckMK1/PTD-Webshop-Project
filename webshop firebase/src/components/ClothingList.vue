@@ -5,28 +5,28 @@
             <p>Clothing</p>
           </div>
         <div class="cContent">
-        <article  v-for="clothing in clothings" :key="clothing.id">
-          <div class="cEach" @click="goTodetail(clothing.id)">
+        <article  v-for="product in products" :key="product.id">
+          <div class="cEach" @click="goTodetail(product.id)" v-if="product.category === 'clothing'">
           <div class="image">
-        <img :src="clothing.image">
+        <img :src="product.image">
         </div>
-        <h3>{{clothing.name}}</h3>
+        <h3>{{product.name}}</h3>
         <div class="dis">
-        <p>{{clothing.description}}</p>
+        <p>{{product.description}}</p>
         </div>
         <div class="stock">
-          <div class="out" v-if="clothing.instock === 0">
+          <div class="out" v-if="product.instock === 0">
             <div class="out-box"></div>
             <p>out of stuck</p>
           </div>
           <div class="in" v-else="">
             <div class="in-box"></div>
-             <p>in stock: {{clothing.instock}}</p>
+             <p>in stock: {{product.instock}}</p>
           </div>
          
         </div>
         <div class="price-buy">
-          <p class="price">$ {{clothing.price}}</p>
+          <p class="price">$ {{product.price}}</p>
           <div class="buy-btn">
           <button>buy</button>
           </div>
@@ -39,22 +39,22 @@
 </template>
 
 <script>
-import { ClothingRef } from "../firebase-db"
+import { productRef } from "../firebase-db"
 export default {
   name:'clothingList',
   data(){
       return{
-          clothings:[],
+          products:[],
           search:''
    }
   },
   firestore:{
-      clothings: ClothingRef,
+      products: productRef,
   },
 
   methods:{
-  goTodetail(clothingId){
-    this.$router.push({name:'details',params:{Pid:clothingId}})
+  goTodetail(productId){
+    this.$router.push({name:'details',params:{Pid:productId}})
   },
   },
 }

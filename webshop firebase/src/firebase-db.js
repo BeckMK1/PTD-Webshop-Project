@@ -14,6 +14,6 @@ export const db = firebase
   })
   .firestore()
 
-export const ClothingRef = db.collection('clothing')
+export const productRef = db.collection('product')
 export const basketRef = db.collection('basket')
 export const basketPriceRef = db.collection('basket').doc('prices')

@@ -2,9 +2,10 @@
   <div class="slider">
       <div class="slider-container">
       <img :src="images[Math.abs(currentNumber) % images.length]" />
+        <a class="prev" @click="prev" href="#">&#10094; Previous </a>
+        <a class="next" @click="next" href="#">&#10095; Next</a>
       </div>
-  <a class="prev" @click="prev"> Previous</a>
-  <a class="next" @click="next"> Next</a>
+
 
   </div>
 </template>
@@ -39,14 +40,49 @@ export default {
 }
 </script>
 <style scoped>
-.slider-container img{
+.slider{
+display: flex;
+justify-content: center;
+}
+.slider-container{
 width: 50%;
 height: 50%;
+}
+.slider-container img{
+width: 100%;
+height: 100%;
 max-width: 900px;
 margin-top: 50px;
 }
 a{
   cursor: pointer;
   user-select: none;
+}
+.prev, .next {
+  cursor: pointer;
+  bottom: 280px;
+  position: relative;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.7s ease;
+  text-decoration: none;
+  user-select: none;
+}
+
+.next {
+  float: right;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.prev {
+  float: left;
+  border-radius: 0 4px 4px 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.9);
 }
 </style>
