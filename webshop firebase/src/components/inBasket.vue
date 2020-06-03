@@ -2,6 +2,7 @@
     <div class="inBasket">
         <article v-for="basket in baskets" :key="basket.id">
             <div class="bContent" v-if="basket.name != null">
+            <img :src="basket.image">
             <h1>{{ basket.name }}</h1>
             <p>{{basket.description}}</p>
              <div class="stock">
@@ -15,14 +16,15 @@
           </div>
         </div>
             <button @click="deleteItem(basket)">x</button>
-            <button @click="sendEmail(basket)"> send</button>
             </div>
         </article>
+        <button @click="sendEmail(basket)"> order</button>
         <article v-for="basket in baskets" :key="basket.id">
-        <div class="buy">
+        <div class="buy" v-if="basket.name != null">
             <div class="bPrice">
                 <div class="bPriceContainer">
-                <p>${{basket.price}}</p>
+                <p>{{basket.name}}</p>
+                <p class="bprice">${{basket.price}}</p>
                 <p class="add"></p>
                 </div>
                 </div>
@@ -61,11 +63,15 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
+
 .stock{
   font-size: 14px;
   display: flex;
   justify-content: center;
+}
+img {
+width:200px;
 }
 .buy{
 display: flex;
@@ -77,13 +83,21 @@ top:200px;
 .bPrice{
 border:solid black thin;
 width: 50%;
-border-bottom: none;
 }
 .bPriceContainer{ 
 text-align: end;
 margin-right: 50px;
 
 }
-.bContent{
+.bContent img{
+width: 150px;
+}
+.bPriceContainer{
+  display: flex;
+  justify-content: space-between;
+}
+.bprice{
+position: relative;
+left:400px
 }
 </style>

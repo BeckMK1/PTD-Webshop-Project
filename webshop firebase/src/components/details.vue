@@ -100,7 +100,8 @@
           name: product.name,
           description: product.description,
           instock: product.instock,
-          price:product.price
+          price:product.price,
+          image:product.image
         })
       },
     },

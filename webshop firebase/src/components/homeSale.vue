@@ -58,7 +58,8 @@ firestore:{
   }
 }
 </script>
-<style>
+<style scoped>
+
 .cContent{
 display: flex;
 flex-direction: row;
@@ -81,6 +82,9 @@ flex-direction: column;
 }
 .image img{
   width: 200px;
+}
+.image{
+    height: 300px;
 }
 h3{
 font-size: 20px;
@@ -115,6 +119,7 @@ display: flex;
 .stock{
   font-size: 14px;
   display: flex;
+
 }
 .out{
 display: flex;

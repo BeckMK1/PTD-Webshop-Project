@@ -59,7 +59,8 @@ export default {
   },
 }
 </script>
-<style>
+<style  scoped>
+
 .cContent{
 display: flex;
 flex-direction: row;
@@ -80,8 +81,11 @@ flex-direction: column;
 .dis p{
   font-size:12px;
 }
-.image img{
-  width: 250px;
+.image img {
+width: 100%;
+}
+.image{
+max-width: 250px;
 }
 h3{
 font-size: 20px;

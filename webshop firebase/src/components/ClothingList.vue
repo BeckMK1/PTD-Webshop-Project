@@ -72,6 +72,7 @@ text-align: start;
 .cEach{
 display: flex;
 flex-direction: column;
+margin-left: 50px;
 }
 .price{
   font-weight: bold;
@@ -81,8 +82,10 @@ flex-direction: column;
   font-size:12px;
 }
 .image img {
-width:200px;
-  
+width: 100%;
+}
+.image{
+max-width: 150px;
 }
 h3{
 font-size: 20px;
