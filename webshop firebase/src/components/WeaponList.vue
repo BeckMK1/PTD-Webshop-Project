@@ -2,7 +2,7 @@
     <div>
       <div class="grid-container">
           <div class="cTitle">
-            <p>Clothing</p>
+            <p>weapons</p>
           </div>
         <div class="cContent">
         <article  v-for="product in products" :key="product.id">
@@ -81,13 +81,13 @@ flex-direction: column;
   font-size:12px;
 }
 .image img{
-  width: 25%;
+  width: 250px;
 }
 h3{
 font-size: 20px;
 }
 .buy-btn button{
-  width: 40%;
+  width: 50px;
   -webkit-appearance: none;
   border:none;
   background: black;
@@ -95,6 +95,7 @@ font-size: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 5px;
+  margin-left: 100px;
 }
 .buy-btn{
 cursor:pointer;

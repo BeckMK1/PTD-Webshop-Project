@@ -80,13 +80,13 @@ flex-direction: column;
   font-size:12px;
 }
 .image img{
-  width: 25%;
+  width: 200px;
 }
 h3{
 font-size: 20px;
 }
 .buy-btn button{
-  width: 40%;
+  width: 50px;
   -webkit-appearance: none;
   border:none;
   background: black;
@@ -94,6 +94,7 @@ font-size: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 5px;
+  margin-left: 50px;
 }
 .buy-btn{
 cursor:pointer;

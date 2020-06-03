@@ -1,5 +1,5 @@
 <template>
-<div class="clothing">
+<div class="weapon">
 <WeaponList></WeaponList>
 </div>
 </template>

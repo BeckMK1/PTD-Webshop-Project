@@ -120,13 +120,12 @@
   }
 
   .d-image img {
-    width: 200px;
-    height: auto;
+    width: 100%;
   }
 
   .d-image {
-    width: 300px;
-    height: 250px;
+    max-width: 300px;
+    max-height: 300px;
     display: flex;
     justify-content: center;
   }
